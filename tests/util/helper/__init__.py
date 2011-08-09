@@ -2,6 +2,7 @@
 '''Helper classes and functions'''
 
 import os
+import sys
 import unittest
 
 from random import randint
@@ -14,6 +15,92 @@ except ImportError:
     has_gui = False
 else:
     has_gui = True
+
+
+# Helper functions during migration to python 2.3
+PY3 = sys.version_info[0] == 3
+
+def create_class(name, bases, attrs={}, meta=type):
+    return meta(name, tuple(bases), attrs)
+
+def makeunicode(value):
+    '''Create an unicode string without the "u" prefix'''
+    if PY3:
+        return value
+    else:
+        return unicode(value, encoding='utf-8')
+
+def unicodetype():
+    '''Returns the type of unicode strings'''
+    if PY3:
+        return str
+    else:
+        return unicode
+
+def bytestrtype():
+    '''Returns the type of byte strings'''
+    if PY3:
+        return bytes
+    else:
+        return str
+
+def makebytestr(value):
+    '''Create an byte string'''
+    if PY3:
+        return bytes(value, encoding='utf-8')
+    else:
+        return str(value)
+
+def makelong(value):
+    if PY3:
+        return value
+    else:
+        return long(value)
+
+def islong(value):
+    if PY3:
+        return isinstance(value, int)
+    else:
+        return isinstance(value, long)
+
+def longtype():
+    if PY3:
+        return int
+    else:
+        return long
+
+def makeStringIO():
+    if PY3:
+        import io
+        return io.StringIO()
+    else:
+        import cStringIO
+        return cStringIO.StringIO()
+
+
+def makeunichr(value):
+    '''Create an unicode char'''
+    if PY3:
+        return chr(value)
+    else:
+        return unichr(value)
+
+def isunicode(value):
+    '''Is it an unicode string?'''
+    if PY3:
+        return isinstance(value, str)
+    else:
+        return isinstance(value, unicode)
+
+def isbytestring(value):
+    '''Is it an non-unicode string?'''
+    if PY3:
+        return isinstance(value, bytes)
+    else:
+        return isinstance(value, str)
+
+
+# Other helper stuff
 
 def adjust_filename(filename, orig_mod_filename):
     dirpath = os.path.dirname(os.path.abspath(orig_mod_filename))

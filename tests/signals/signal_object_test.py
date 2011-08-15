@@ -5,14 +5,14 @@ import unittest
 import functools
 
 from PySide.QtCore import *
-from helper import UsesQCoreApplication
+from helper import UsesQCoreApplication, unicodetype
 
 class MyObject(QTimer):
     sig1 = Signal()
     sig2 = Signal(int, name='rangeChanged')
     sig3 = Signal(int)
-    sig4 = Signal((int,), (unicode,))
-    sig5 = Signal((unicode,), (int,))
+    sig4 = Signal((int,), (unicodetype(),))
+    sig5 = Signal((unicodetype(),), (int,))
     sig6 = Signal(QObject)
 
     @Slot(int)
@@ -53,8 +53,8 @@ class SignalObjectTest(UsesQCoreApplication):
 
     def testDictOperator(self):
         o = MyObject()
-        o.sig4[unicode].connect(o.slotString)
-        o.sig4[unicode].emit("PySide")
+        o.sig4[unicodetype()].connect(o.slotString)
+        o.sig4[unicodetype()].emit("PySide")
         self.assertEqual(o._s, "PySide")
 
     def testGeneretedSignal(self):

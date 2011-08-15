@@ -2,6 +2,8 @@ import unittest
 from PySide.QtCore import *
 from PySide.QtGui import *
 
+from helper import makeunicode
+
 class MyItemModel(QStandardItemModel):
     def __init__(self,parent=None):
         super(MyItemModel,self).__init__(parent)
@@ -9,12 +11,12 @@ class MyItemModel(QStandardItemModel):
 
     def mimeTypes(self):
         mtypes = super(MyItemModel,self).mimeTypes()
-        mtypes.append(u'application/my-form')
+        mtypes.append(makeunicode('application/my-form'))
         return mtypes
 
     def mimeData(self,indexes):
         self.__mimedata = super(MyItemModel,self).mimeData(indexes)
-        self.__mimedata.setData(u'application/my-form', 'hi')
+        self.__mimedata.setData(makeunicode('application/my-form'), 'hi')
         return self.__mimedata
 
 class TestBug660(unittest.TestCase):

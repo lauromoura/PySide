@@ -3,6 +3,7 @@
 import unittest
 from testbinding import TestView
 from PySide.QtCore import QAbstractListModel, QObject, QModelIndex
+from helper import isunicode
 
 '''Tests model/view relationship.'''
 
@@ -62,7 +63,7 @@ class ModelViewTest(unittest.TestCase):
         model = ListModelThatReturnsString()
         view = TestView(model)
         obj = view.getData()
-        self.assertEqual(type(obj), unicode)
+        self.assertTrue(isunicode(obj))
         self.assertEqual(obj, 'string')
 
 if __name__ == '__main__':

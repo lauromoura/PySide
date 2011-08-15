@@ -8,7 +8,7 @@ import glob
 import unittest
 from PySide.QtCore import *
 
-from helper import UsesQCoreApplication
+from helper import UsesQCoreApplication, makeunicode, isunicode
 
 class TranslationTest(UsesQCoreApplication):
     '''Test case for Qt translation facilities.'''
@@ -25,7 +25,7 @@ class TranslationTest(UsesQCoreApplication):
 
         obj = QObject()
         obj.setObjectName(obj.tr('Hello World!'))
-        self.assertEqual(obj.objectName(), u'Orbis, te saluto!')
+        self.assertEqual(obj.objectName(), makeunicode('Orbis, te saluto!'))
 
     def testRussian(self):
         #Set string value to Russian
@@ -35,7 +35,7 @@ class TranslationTest(UsesQCoreApplication):
 
         obj = QObject()
         obj.setObjectName(obj.tr('Hello World!'))
-        self.assertEqual(obj.objectName(), u'привет мир!')
+        self.assertEqual(obj.objectName(), makeunicode('привет мир!'))
 
     def testUtf8(self):
         translator = QTranslator()
@@ -44,12 +44,12 @@ class TranslationTest(UsesQCoreApplication):
 
         obj = QObject()
         obj.setObjectName(obj.trUtf8('Hello World!'))
-        self.assertEqual(obj.objectName(), u'привет мир!')
+        self.assertEqual(obj.objectName(), makeunicode('привет мир!'))
 
     def testTranslateWithNoneDisambiguation(self):
         value = 'String here'
         obj = QCoreApplication.translate('context', value, None, QCoreApplication.UnicodeUTF8)
-        self.assert_(isinstance(obj, unicode))
+        self.assert_(isunicode(obj))
         self.assertEqual(obj, value)
 
 if __name__ == '__main__':

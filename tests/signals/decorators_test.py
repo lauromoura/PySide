@@ -6,6 +6,8 @@ import functools
 
 from PySide.QtCore import *
 
+from helper import unicodetype
+
 class MyObject(QObject):
     def __init__(self, parent=None):
         QObject.__init__(self, parent)
@@ -24,7 +26,7 @@ class MyObject(QObject):
     def foo(self):
         self._slotCalledCount = self._slotCalledCount + 1
 
-    @Slot(unicode, int)
+    @Slot(unicodetype(), int)
     def mySlot4(self, a, b):
         self._slotCalledCount = self._slotCalledCount + 1
 

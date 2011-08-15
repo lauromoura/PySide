@@ -3,7 +3,7 @@ import colorsys
 
 from PySide.QtCore import *
 from PySide.QtGui import *
-from helper import UsesQApplication
+from helper import UsesQApplication, makeunichr
 
 class Foo(QPyTextObject):
     called = False
@@ -24,7 +24,7 @@ class QAbstractTextDocumentLayoutTest(UsesQApplication):
         fmt.setObjectType(QAbstractTextDocumentLayoutTest.objectType)
 
         cursor = self.textEdit.textCursor()
-        cursor.insertText(unichr(0xfffc), fmt)
+        cursor.insertText(makeunichr(0xfffc), fmt)
         self.textEdit.setTextCursor(cursor)
         self.textEdit.close()
 

@@ -5,6 +5,8 @@ import unittest
 
 from PySide.QtCore import *
 
+from helper import makeunicode, isunicode
+
 class QTextStreamShiftTest(unittest.TestCase):
 
     def setUp(self):
@@ -18,7 +20,7 @@ class QTextStreamShiftTest(unittest.TestCase):
         self.write << '4'
         self.write.flush()
         res = self.read.readLine()
-        self.assert_(isinstance(res, unicode))
+        self.assert_(isunicode(res))
         self.assertEqual(res, '4')
 
 class QTextStreamGetSet(unittest.TestCase):

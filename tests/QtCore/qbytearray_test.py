@@ -5,9 +5,10 @@ import unittest
 import ctypes
 import sys
 import pickle
-import cStringIO
 
 from PySide.QtCore import *
+
+from helper import makelong, makeStringIO
 
 class QByteArrayTestToNumber(unittest.TestCase):
     def testToNumberInt(self):
@@ -30,7 +31,7 @@ class QByteArrayTestToNumber(unittest.TestCase):
 
     def testSetNum(self):
         b = QByteArray()
-        b.setNum(-124124L)
+        b.setNum(makelong(-124124))
         self.assertEqual(b, "-124124")
         b = QByteArray()
         b.setNum(-124124)
@@ -143,7 +144,7 @@ class QByteArrayBug514(unittest.TestCase):
 class TestPickler(unittest.TestCase):
     def testIt(self):
         ba = QByteArray("321\x00123")
-        output = cStringIO.StringIO()
+        output = makeStringIO()
         pickle.dump(ba, output)
         ba2 = pickle.loads(output.getvalue())
         self.assertEqual(ba, ba2)

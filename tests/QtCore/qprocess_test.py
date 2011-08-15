@@ -6,11 +6,13 @@ import os
 
 from PySide.QtCore import *
 
+from helper import islong
+
 class TestQProcess (unittest.TestCase):
     def testStartDetached(self):
         value, pid = QProcess.startDetached("dir", [], os.getcwd())
         self.assert_(isinstance(value, bool))
-        self.assert_(isinstance(pid, long))
+        self.assert_(islong(pid))
 
     def testPid(self):
         p = QProcess()

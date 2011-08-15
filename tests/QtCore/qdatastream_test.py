@@ -4,6 +4,7 @@
 import unittest
 
 from PySide.QtCore import *
+from helper import makeunicode, makeunichr
 
 def create_bitarray(string):
     array = QBitArray(len(string))
@@ -79,14 +80,14 @@ class QDataStreamShift(unittest.TestCase):
         self.stream.writeQChar(42)
 
         res = self.read_stream.readQChar()
-        self.assertEqual(res, unichr(42))
+        self.assertEqual(res, makeunichr(42))
 
     def testQCharNull(self):
         '''QDataStream <<>> QChar - null'''
         self.stream.writeQChar(None)
 
         res = self.read_stream.readQChar()
-        self.assertEqual(res, u'\x00')
+        self.assertEqual(res, makeunicode('\x00'))
 
     def testQByteArrayValid(self):
         '''QDataStream <<>> QByteArray - valid'''
@@ -124,21 +125,21 @@ class QDataStreamShift(unittest.TestCase):
         self.stream.writeQString('Ka-boom')
 
         res = self.read_stream.readQString()
-        self.assertEqual(res, u'Ka-boom')
+        self.assertEqual(res, makeunicode('Ka-boom'))
 
     def testQStringEmpty(self):
         '''QDataStream <<>> QString - empty'''
         self.stream.writeQString('')
 
         res = self.read_stream.readQString()
-        self.assertEqual(res, u'')
+        self.assertEqual(res, makeunicode(''))
 
     def testQStringNull(self):
         '''QDataStream <<>> QString - null'''
         self.stream.writeQString(None)
 
         res = self.read_stream.readQString()
-        self.assertEqual(res, u'')
+        self.assertEqual(res, makeunicode(''))
 
     def testQBitArrayNull(self):
         '''QDataStream <<>> QBitArray - null'''

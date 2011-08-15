@@ -3,16 +3,18 @@ import unittest
 from PySide.QtCore import *
 from PySide.QtSql import *
 
+from helper import unicodetype, bytestrtype, longtype
+
 class QVariantTypeTest(unittest.TestCase):
     def testQVariantType(self):
-        f = QSqlField("name", unicode)
-        self.assertEqual(f.type(), unicode)
+        f = QSqlField("name", unicodetype())
+        self.assertEqual(f.type(), unicodetype())
 
-        f = QSqlField("name", str)
-        self.assertEqual(f.type(), unicode)
+        f = QSqlField("name", bytestrtype())
+        self.assertEqual(f.type(), unicodetype())
 
         f = QSqlField("name", "QString")
-        self.assertEqual(f.type(), unicode)
+        self.assertEqual(f.type(), unicodetype())
 
         f = QSqlField("name", "double")
         self.assertEqual(f.type(), float)
@@ -23,7 +25,7 @@ class QVariantTypeTest(unittest.TestCase):
         f = QSqlField("name", int)
         self.assertEqual(f.type(), int)
 
-        f = QSqlField("name", long)
+        f = QSqlField("name", longtype())
         self.assertEqual(f.type(), int) # long isn't registered in QVariant:Type, just in QMetaType::Type
 
         #f = QSqlField("name", QObject)

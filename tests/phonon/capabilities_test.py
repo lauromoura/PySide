@@ -4,7 +4,7 @@ import unittest
 from PySide.QtCore import *
 from PySide import phonon
 
-from helper import UsesQCoreApplication
+from helper import UsesQCoreApplication, isunicode
 
 class CapabilitiesTest(UsesQCoreApplication):
     def setUp(self):
@@ -36,7 +36,7 @@ class CapabilitiesTest(UsesQCoreApplication):
         # TODO Improve this test
         mimeTypes = phonon.Phonon.BackendCapabilities.availableMimeTypes()
         for mime in mimeTypes:
-            self.assert_(isinstance(mime, unicode))
+            self.assert_(isunicode(mime))
 
     def testAudioEffects(self):
         # TODO Improve this test

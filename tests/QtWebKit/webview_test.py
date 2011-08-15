@@ -8,7 +8,7 @@ from PySide.QtCore import QObject, SIGNAL, QUrl
 from PySide.QtWebKit import *
 from PySide.QtNetwork import QNetworkRequest
 
-from helper import adjust_filename, TimedQApplication
+from helper import adjust_filename, TimedQApplication, makeunicode
 
 
 class testWebPage(QWebPage):
@@ -63,7 +63,7 @@ class TestLoadFinished(TimedQApplication):
             self.called = True
 
     def testNamedArgumentTypeChecking(self):
-        self.assertRaises(TypeError, self.view.load, QNetworkRequest(), body=unicode('foo'))
+        self.assertRaises(TypeError, self.view.load, QNetworkRequest(), body=makeunicode('foo'))
 
 if __name__ == '__main__':
     unittest.main()

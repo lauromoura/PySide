@@ -5,6 +5,7 @@
 import unittest
 
 from PySide.QtCore import QObject
+from helper import makeunicode
 
 class ObjectNameCase(unittest.TestCase):
     '''Tests related to QObject object name'''
@@ -32,7 +33,7 @@ class ObjectNameCase(unittest.TestCase):
 
     def testUnicode(self):
         #QObject.setObjectName(unicode)
-        name = u'diseño'
+        name = makeunicode('diseño')
         #FIXME Strange error on upstream when using equal(name, obj)
         obj = QObject()
         obj.setObjectName(name)

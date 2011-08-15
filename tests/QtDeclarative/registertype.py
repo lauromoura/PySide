@@ -6,6 +6,8 @@ from PySide.QtCore import *
 from PySide.QtGui import *
 from PySide.QtDeclarative import *
 
+from helper import makeunicode, unicodetype
+
 class PieSlice (QDeclarativeItem):
 
     def __init__(self, parent = None):
@@ -50,7 +52,7 @@ class PieChart (QDeclarativeItem):
 
     def __init__(self, parent = None):
         QDeclarativeItem.__init__(self, parent)
-        self._name = u''
+        self._name = makeunicode('')
         self._slices = []
 
     def getName(self):
@@ -59,7 +61,7 @@ class PieChart (QDeclarativeItem):
     def setName(self, value):
         self._name = value
 
-    name = Property(unicode, getName, setName)
+    name = Property(unicodetype(), getName, setName)
 
     def appendSlice(self, _slice):
         global appendCalled

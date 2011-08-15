@@ -2,7 +2,7 @@ from PySide.QtCore import *
 from PySide.QtGui import *
 from PySide.QtDeclarative import *
 
-from helper import adjust_filename
+from helper import adjust_filename, create_class
 import unittest
 
 paintCalled = False
@@ -10,8 +10,7 @@ paintCalled = False
 class MetaA(type):
     pass
 
-class A(object):
-    __metaclass__ = MetaA
+A = create_class('A', bases=(object,), meta=MetaA)
 
 MetaB = type(QDeclarativeItem)
 B = QDeclarativeItem
@@ -19,8 +18,7 @@ B = QDeclarativeItem
 class MetaC(MetaA, MetaB):
     pass
 
-class C(A, B):
-    __metaclass__ = MetaC
+C = create_class('C', bases=(A, B), meta=MetaC)
 
 class Bug825 (C):
 

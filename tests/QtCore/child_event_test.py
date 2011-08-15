@@ -39,7 +39,7 @@ class TestChildEvent(UsesQCoreApplication):
         parent = ExtQObject()
         child = QObject()
         child.setParent(parent)
-        print "parent seted"
+        print("parent set")
         #self.assert_(parent.child_event_received)
 
     """

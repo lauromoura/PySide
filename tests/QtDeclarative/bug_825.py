@@ -38,7 +38,6 @@ class Bug825 (C):
 
 class TestBug825 (unittest.TestCase):
     def testIt(self):
-        global paintCalled
         app = QApplication([])
         qmlRegisterType(Bug825, 'bugs', 1, 0, 'Bug825')
         self.assertRaises(TypeError, qmlRegisterType, A, 'bugs', 1, 0, 'A')

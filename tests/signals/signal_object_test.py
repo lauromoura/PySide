@@ -74,7 +74,7 @@ class SignalObjectTest(UsesQCoreApplication):
     def testSignalWithSignal(self):
         o = MyObject()
         o.sig2.connect(o.myRange)
-        print "sig->sig", o.sig5.connect(o.sig2)
+        print(("sig->sig %s"% o.sig5.connect(o.sig2)))
         o.sig5[int].emit(10)
         self.assertEqual(o._range, 10)
 

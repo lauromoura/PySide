@@ -19,7 +19,7 @@ class WidgetValidatorQSpinBox(QSpinBox):
         QSpinBox.__init__(self, parent)
 
     def fixup(self, text):
-        print "It was called!"
+        print("It was called!")
 
 class DoubleQObjectInheritanceTest(UsesQApplication):
 

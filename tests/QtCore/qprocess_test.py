@@ -22,7 +22,7 @@ class TestQProcess (unittest.TestCase):
         if p.state() == QProcess.Running:
             self.assertNotEqual(pid, 0)
         else:
-            print "PROCESS ALREADY DEAD :-/"
+            print("PROCESS ALREADY DEAD :-/")
 
 if __name__ == '__main__':
     unittest.main()

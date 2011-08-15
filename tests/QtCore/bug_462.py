@@ -14,7 +14,7 @@ class MyThread (QThread):
         self.owner=owner;
 
     def run(self):
-        for i in xrange(3):
+        for i in range(3):
             e=MyEvent(i);
             QCoreApplication.postEvent(self.owner,e)
 

@@ -34,7 +34,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.view)
 
     def mousePressEvent(self, e):
-        print e.x(), e.y()
+        print(e.x(), e.y())
         return QMainWindow.mousePressEvent(self, e)
 
 def main():

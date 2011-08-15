@@ -5,7 +5,7 @@ class TestLabelPixmap(unittest.TestCase):
     def testReference(self):
         toolbar = QToolBar()
 
-        for i in xrange(20):
+        for i in range(20):
             toolbar.addAction(QAction("Action %d" % i, None))
 
         buttons = toolbar.findChildren(QToolButton, "")

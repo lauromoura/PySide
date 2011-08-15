@@ -218,7 +218,7 @@ class QDataStreamShift(unittest.TestCase):
     def testQDateTimeValid(self):
         '''QDataStream <<>> QDateTime - valid'''
         time = QTime(23, 23, 23)
-        date = QDate(2009, 01, 01)
+        date = QDate(2009, 1, 1)
 
         self.stream << QDateTime(date, time)
 

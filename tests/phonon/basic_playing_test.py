@@ -11,7 +11,7 @@ def checkBackendCapabilities(func):
         if Phonon.BackendCapabilities.isMimeTypeAvailable('audio/x-wav'):
             func(self, *args, **kw)
         else:
-            print 'Wav format not supported! Playback test skipped!'
+            print('Wav format not supported! Playback test skipped!')
     return function
 
 

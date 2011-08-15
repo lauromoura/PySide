@@ -12,7 +12,7 @@ class MyFileEngine (QAbstractFileEngine):
         return True
 
     def read(self, maxlen):
-        print "Reading... to return ", self.contents[self.pos:maxlen]
+        print(("Reading... to return %s" % self.contents[self.pos:maxlen]))
 
         if self.pos > len(self.contents):
             return -1
